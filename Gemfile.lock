@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     coderay (1.1.1)
+    dotenv (2.2.1)
     method_source (0.8.2)
     pry (0.10.4)
       coderay (~> 1.1.0)
@@ -23,9 +24,10 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  dotenv
   pry
   shotgun
   sinatra
 
 BUNDLED WITH
-   1.13.2
+   1.16.1
