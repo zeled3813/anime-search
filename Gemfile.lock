@@ -30,4 +30,8 @@ DEPENDENCIES
   sinatra
 
 BUNDLED WITH
+<<<<<<< HEAD
    1.16.0
+=======
+   1.16.1
+>>>>>>> a5c8a7644232816de88329f43ec512478623d9db
