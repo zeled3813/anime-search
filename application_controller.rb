@@ -10,4 +10,9 @@ class ApplicationController < Sinatra::Base
     erb :index
   end
   
+  post '/result' do 
+    
+    erb :result
+  end
+  
 end
