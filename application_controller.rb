@@ -2,7 +2,7 @@ require 'dotenv/load'
 require 'bundler'
 Bundler.require
 
-require_relative 'models/model.rb'
+require_relative 'models/kitsu.rb'
 
 class ApplicationController < Sinatra::Base
 
