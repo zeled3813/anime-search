@@ -17,8 +17,8 @@ require 'pp'
 # anime_hash = JSON.parse(response)
 # puts anime_hash
 
-def anime_search
-    url = 'https://kitsu.io/api/edge/anime?filter[genres]=adventure'
+def anime_genre_search
+    url = 'https://kitsu.io/api/edge/anime?filter[genres]=horror'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     anime_hash = JSON.parse(response)
@@ -39,15 +39,47 @@ def anime_search
                 end
             end
         end
-        
     end
     #Searching for specific anime title above.
     
     # pp anime_hash
-    puts "The following is the result:"
+    puts "The above are the titles in this genre"
+    puts "The following is the value of result:"
     puts result
 end
 
-anime_search
+# anime_genre_search
 
+def anime_name_search
+    url = 'https://kitsu.io/api/edge/anime?page[limit]=20'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    anime_hash = JSON.parse(response)
+    anime_hash["data"].each do |key,value|
+        key.each do |key_type,value_type|
+            if key_type == "attributes"
+                value_type.each do |title,language|
+                    puts language
+                end
+            end
+        end
+    end
+end
 
+anime_name_search
+
+def anime_description_search
+     url = 'https://kitsu.io/api/edge/anime?page[limit]=20'
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    anime_hash = JSON.parse(response)
+    anime_hash["data"].each do |key,value|
+        key.each do |key_type,value_type|
+            if key_type == "attributes"
+                value_type.each do |title,language|
+                    puts language
+                end
+            end
+        end
+    end
+end
