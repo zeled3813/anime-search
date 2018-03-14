@@ -75,6 +75,21 @@ def anime_name_search
             end
         end
     end
+    def anime_date_search
+    url = 'https://kitsu.io/api/edge/anime?page[limit]=20'
+     uri = URI(url)
+    response = Net::HTTP.get(uri)
+    anime_hash = JSON.parse(response)
+    anime_hash["data"].each do |key,value|
+        key.each do |key_type,value_type|
+            if key_type == "attributes"
+                value_type.each do |title,language|
+                    puts language
+                end
+            end
+        end
+    end
+end
     anime_hash["data"].map do |key|
         key.each do |type_key,type_value|
             if type_key == "attributes"
