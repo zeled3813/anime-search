@@ -92,7 +92,7 @@ def anime_name_search
             end
         end
     end
-<<<<<<< HEAD
+
     
     puts "The above the return value of the iteration."
     puts "The following is the result:"
@@ -108,7 +108,7 @@ response = Net::HTTP.get(uri)
 pp JSON.parse(response)
 
 
-=======
+
 end
 
->>>>>>> c3bd274e8b096bd7e15321949005f5cb3279810b
+
