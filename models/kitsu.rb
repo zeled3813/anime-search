@@ -97,8 +97,6 @@ def anime_name_search
     puts "The above the return value of the iteration."
     puts "The following is the result:"
     puts result
-    
-end
 
 # anime_name_search
 
