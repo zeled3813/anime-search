@@ -101,9 +101,9 @@ end
 
 # anime_name_search
 
-url = 'https://kitsu.io/api/oauth'
+url = 'https://kitsu.io/api/edge/anime?filter[genres]=horror'
 uri = URI(url)
 response = Net::HTTP.get(uri)
 pp JSON.parse(response)
-anime_hash = JSON.parse(response)
+
 
