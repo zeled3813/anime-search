@@ -1,6 +1,5 @@
 require 'dotenv/load'
 require 'bundler'
-require 'kitsu'
 Bundler.require
 
 require_relative 'models/kitsu.rb'

@@ -19,6 +19,7 @@ require 'pp'
 
 def anime_genre_search
     url = 'https://kitsu.io/api/edge/anime?filter[genres]=horror'
+    # url = 'https://kitsu.io/api/edge/anime?page[limit]=1/filter[text]=cowboy%20bebop'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     anime_hash = JSON.parse(response)
@@ -51,35 +52,58 @@ end
 # anime_genre_search
 
 def anime_name_search
-    url = 'https://kitsu.io/api/edge/anime?page[limit]=20'
+    url = 'https://kitsu.io/api/edge/anime?page[limit]=1/filter[text]=attack%20on%20titan'
+    # url = 'https://kitsu.io/api/edge/anime?filter[genres]=horror'
     uri = URI(url)
     response = Net::HTTP.get(uri)
     anime_hash = JSON.parse(response)
-    anime_hash["data"].each do |key,value|
+    pp anime_hash["data"]
+    result = []
+    # puts anime_name
+    anime_hash["data"].map do |key,value| 
         key.each do |key_type,value_type|
             if key_type == "attributes"
-                value_type.each do |title,language|
-                    puts language
+                value_type.each do |category,detail|
+                    if category == "titles"
+                        detail.each do |language,title|
+                            if language == "en_jp"
+                                 puts "name: " + title
+                            end
+                        end
+                    end
                 end
             end
         end
     end
-end
-
-anime_name_search
-
-def anime_description_search
-     url = 'https://kitsu.io/api/edge/anime?page[limit]=20'
-    uri = URI(url)
-    response = Net::HTTP.get(uri)
-    anime_hash = JSON.parse(response)
-    anime_hash["data"].each do |key,value|
-        key.each do |key_type,value_type|
-            if key_type == "attributes"
-                value_type.each do |title,language|
-                    puts language
+    anime_hash["data"].map do |key|
+        key.each do |type_key,type_value|
+            if type_key == "attributes"
+                type_value.each do |category,detail|
+                    if category == "synopsis"
+                        puts "Description: " + detail.to_s
+                    end
+                    if category == "episodeCount"
+                        puts "Episode count: " + detail.to_s + " episodes"
+                    end
+                    if category == "episodeLength"
+                        puts "Episode length: " + detail.to_s + " min(s)"
+                    end
                 end
             end
         end
     end
+    
+    puts "The above the return value of the iteration."
+    puts "The following is the result:"
+    puts result
+    
 end
+
+# anime_name_search
+
+url = 'https://kitsu.io/api/oauth'
+uri = URI(url)
+response = Net::HTTP.get(uri)
+pp JSON.parse(response)
+anime_hash = JSON.parse(response)
+
