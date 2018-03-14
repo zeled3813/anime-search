@@ -10,31 +10,39 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <!-- bootstrap JS -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-    
+    <link href='https://fonts.googleapis.com/css?family=Monofett' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Bungee Hairline' rel='stylesheet'>
     <!-- custom css -->
     <link rel="stylesheet" href="css/style.css" type="text/css">
     <!-- custom JS -->
     <script src="js/script.js"></script>
     <style>
       html {
-        background: lightseagreen;
+        background: black;
         color: aquamarine;
       }
       div {
-        background: lightseagreen;
+        background: black;
         color: aquamarine;
         text-align: center
       }
       h1{
+        font-family: 'Monofett';
         background: darkslategrey;
         color: lightcyan
+        
       }
       h4{
         color: Turquoise;
+        font-family: 'Bungee Hairline';
       }
       input {
         color: darkblue;
         background: lightcyan
+        font-family: 'Bungee Hairline';
+      }
+      p {
+        font-family: Courier;
       }
     </style>
   </head>
@@ -42,12 +50,11 @@
     
     <div class="container-fluid">
       <form method="post" action="/result">
-      <h1>Anime Search</h1>
-      <p>Whether you want to watch a new anime this year,</p>
+      <h1>Anime Search <span class="glyphicon glyphicon-th-list"></span></h1>
+      <p>Whether you want to$ watch a new anime this year,</p>
       <p>Or you want to revisit an old favorite of yours,</p>
       <p>This search will help you to get the summary, date released, episode count, and more!</p>
-
-        <h4><b>Input an anime's name:</b></h4> 
+      <h4><b>Input an anime's name:</b></h4> 
       <h3><input type="text" name="search"></h3>
       <h5><input type="submit"></h5>
       <!--</form>-->

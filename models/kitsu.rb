@@ -23,7 +23,7 @@ def anime_genre_search
     uri = URI(url)
     response = Net::HTTP.get(uri)
     anime_hash = JSON.parse(response)
-    result = ""
+    result = " "
     
     #Searching for specific anime title below.
     anime_hash["data"].map do |key,value| 
@@ -92,6 +92,7 @@ def anime_name_search
             end
         end
     end
+<<<<<<< HEAD
     
     puts "The above the return value of the iteration."
     puts "The following is the result:"
@@ -107,3 +108,7 @@ response = Net::HTTP.get(uri)
 pp JSON.parse(response)
 
 
+=======
+end
+
+>>>>>>> c3bd274e8b096bd7e15321949005f5cb3279810b
