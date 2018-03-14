@@ -101,7 +101,7 @@ end
 
 # anime_name_search
 
-url = 'https://kitsu.io/api/edge/anime?filter[genres]=horror'
+url = 'https://kitsu.io/api/edge/anime?page[limit]=1/filter[text]=' + 'cowboy%20bebop'
 uri = URI(url)
 response = Net::HTTP.get(uri)
 pp JSON.parse(response)
