@@ -170,7 +170,7 @@ def anime_episode_length_search(anime_name)
                             if language == "en" && title.downcase == anime_name.downcase
                                 type_value.each do |category,detail|
                                     if category == "episodeLength"
-                                        episode_length_result = detail.to_s + "min(s)"
+                                        episode_length_result = detail.to_s + " min(s)"
                                     end
                                 end
                                 

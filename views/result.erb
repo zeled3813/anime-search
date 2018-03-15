@@ -16,9 +16,20 @@
   </head>
   <style>
     #header{
-      text-align:center;
-      background-color:black;
-      color:white;
+      text-align: center;
+      background-color: darkslategrey;
+      color: lightcyan;
+      font-family: Courier;
+    }
+    html{
+      background: black;
+      color: lightcyan;
+      font-family: Courier;
+    }
+    img {
+      height: 500px;
+      width: 500px;
+       
     }
   </style>
   <body>
@@ -30,10 +41,10 @@
     </div>
     <div id=summary class=col-sm-6>
       <p><%=@anime_desc_result%></p>
-      <h3>Episode count: <%= @anime_episode_count_result %></h3>
-      <h3>Episode length: <%= @anime_episode_length_result %> </h3>
-      <h3>Date released: <%= @anime_date_release_result %></h3>
-      <h3>Status: <%= @anime_status_result%></h3>
+      <h3>Episode Count: <%= @anime_episode_count_result %></h3>
+      <h3>Episode Length: <%= @anime_episode_length_result %> </h3>
+      <h3>Date Released/First Aired: <%= @anime_date_release_result %></h3>
+      <h3>Current Status: <%= @anime_status_result%></h3>
     </div>
     <div class=col-sm-6>
       <img src=<%= @anime_image_url %>>
