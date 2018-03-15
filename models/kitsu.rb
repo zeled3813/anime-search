@@ -101,7 +101,7 @@ def anime_description_search(anime_name)
                             if language == "en" && title.downcase == anime_name.downcase
                                 type_value.each do |category,detail|
                                     if category == "synopsis"
-                                        desc_result = "Summary: " + detail.to_s
+                                        desc_result =  detail.to_s
                                     end
                                 end
                                 

@@ -31,6 +31,9 @@
       width: 500px;
        
     }
+    #summary {
+      color:white;
+    }
   </style>
   <body>
     <div class=container-fluid id="header">
@@ -40,7 +43,7 @@
       <h1><%=@anime_name_result%></h1>
     </div>
     <div id=summary class=col-sm-6>
-      <p><%=@anime_desc_result%></p>
+      <h3>Summary: </h3></h3><p><%=@anime_desc_result%></p>
       <h3>Episode Count: <%= @anime_episode_count_result %></h3>
       <h3>Episode Length: <%= @anime_episode_length_result %> </h3>
       <h3>Date Released/First Aired: <%= @anime_date_release_result %></h3>
