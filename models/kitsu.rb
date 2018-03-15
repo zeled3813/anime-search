@@ -1,11 +1,3 @@
-# require 'kitsu'
-
-# # Kitsu.authenticate(ENV["CLIENT_ID"], ENV["CLIENT_SECRET"])
-
-# # Kitsu.authenticate("dd031b32d2f56c990b1425efe6c42ad847e7fe3ab46bf1299f05ecd856bdb7dd", "54d7307928f63414defd96399fc31ba847961ceaecef3a5fd93144e960c0e151")
-
-# return anime?filter[genres]=adventure\
-
 require 'net/http'
 require 'json'
 require 'pp'
@@ -15,52 +7,17 @@ uri = URI(url)
 response = Net::HTTP.get(uri)
 pp JSON.parse(response)
 
-# def anime_genre_search
-#     url = 'https://kitsu.io/api/edge/anime?filter[genres]=horror'
-#     # url = 'https://kitsu.io/api/edge/anime?page[limit]=1/filter[text]=cowboy%20bebop'
-#     uri = URI(url)
-#     response = Net::HTTP.get(uri)
-#     anime_hash = JSON.parse(response)
-#     result = " "
-    
-#     #Searching for specific anime title below.
-#     anime_hash["data"].map do |key,value| 
-#         key.each do |key_type,value_type|
-#             if key_type == "attributes"
-#                 value_type.each do |category,detail|
-#                     if category == "titles"
-#                         detail.each do |language,title|
-#                             if language == "en_jp"
-#                                  puts title
-#                             end
-#                         end
-#                     end
-#                 end
-#             end
-#         end
-#     end
-#     #Searching for specific anime title above.
-    
-#     # pp anime_hash
-#     puts "The above are the titles in this genre"
-#     puts "The following is the value of result:"
-#     puts result
-# end
-
-# anime_genre_search
-
 def anime_name_search(anime_name)
-    anime_name_hash = []
-    anime_name_hash << anime_name.downcase.split(" ")
-    anime_name_hash = anime_name_hash.join("%20")
-    url = 'https://kitsu.io/api/edge/anime?filter[text]=' + anime_name_hash
-    # url = 'https://kitsu.io/api/edge/anime?filter[genres]=horror'
+    anime_name_hash = []  #Creates an array that stores anime_name.
+    anime_name_hash << anime_name.downcase.split(" ") #Split the words up when there is a space.
+    anime_name_hash = anime_name_hash.join("%20") #Combine the words into one phrase with %20 replacing the spaces.
+    url = 'https://kitsu.io/api/edge/anime?filter[text]=' + anime_name_hash #Add the anime name to the end of the url, in order to filter the data.
     uri = URI(url)
     response = Net::HTTP.get(uri)
     anime_hash = JSON.parse(response)
     # pp anime_hash
-    name_result = ""
-    anime_hash["data"].map do |key|
+    name_result = "" #Creates an empty string.
+    anime_hash["data"].map do |key| #Iterate over all of the data hashes to obtain the title of the anime.
         key.each do |type_key,type_value|
             if type_key == "attributes"
                 type_value.each do |category,detail|
@@ -75,13 +32,12 @@ def anime_name_search(anime_name)
             end
         end
     end
-    return name_result
+    return name_result #Return the string, with the name of the anime, as the return value of this method.
 end
 
-# anime_name_search("Monster")
 
-def anime_description_search(anime_name)
-    anime_name_hash = []
+def anime_description_search(anime_name) #Checks the summary of the specific anime provided by the user.
+    anime_name_hash = [] 
     anime_name_hash << anime_name.downcase.split(" ")
     anime_name_hash = anime_name_hash.join("%20")
     url = 'https://kitsu.io/api/edge/anime?filter[text]=' + anime_name_hash
@@ -90,7 +46,7 @@ def anime_description_search(anime_name)
     anime_hash = JSON.parse(response)
     # pp anime_hash
     desc_result = ""
-    anime_hash["data"].map do |key|
+    anime_hash["data"].map do |key| #Iterate over all of the data hashes to obtain the summary of the anime.
         key.each do |type_key,type_value|
             if type_key == "attributes"
                 type_value.each do |category,detail|
@@ -110,12 +66,11 @@ def anime_description_search(anime_name)
             end
         end
     end
-    return desc_result
+    return desc_result #Return the string, with the summary of the anime, as the return value of this method.
 end
 
-# anime_description_search("Monster")
 
-def anime_episode_count_search(anime_name)
+def anime_episode_count_search(anime_name) #Checks the episode count of the anime
     anime_name_hash = []
     anime_name_hash << anime_name.downcase.split(" ")
     anime_name_hash = anime_name_hash.join("%20")
@@ -125,7 +80,7 @@ def anime_episode_count_search(anime_name)
     anime_hash = JSON.parse(response)
     # pp anime_hash
     episode_count_result = ""
-    anime_hash["data"].map do |key|
+    anime_hash["data"].map do |key| #Iterate over all of the data hashes to obtain the episode count of the anime.
         key.each do |type_key,type_value|
             if type_key == "attributes"
                 type_value.each do |category,detail|
@@ -144,12 +99,10 @@ def anime_episode_count_search(anime_name)
             end
         end
     end
-    return episode_count_result
+    return episode_count_result #Return the string, with the episode count of the anime, as the return value of this method.
 end
 
-# anime_episode_count_search("Monster")
-
-def anime_episode_length_search(anime_name)
+def anime_episode_length_search(anime_name) #Checks the episode length of the anime.
     anime_name_hash = []
     anime_name_hash << anime_name.downcase.split(" ")
     anime_name_hash = anime_name_hash.join("%20")
@@ -159,7 +112,7 @@ def anime_episode_length_search(anime_name)
     anime_hash = JSON.parse(response)
     # pp anime_hash
     episode_length_result = ""
-    anime_hash["data"].map do |key|
+    anime_hash["data"].map do |key| #Iterate over all of the data hashes to obtain the episode length of the anime.
         key.each do |type_key,type_value|
             if type_key == "attributes"
                 type_value.each do |category,detail|
@@ -179,12 +132,11 @@ def anime_episode_length_search(anime_name)
             end
         end
     end
-    return episode_length_result
+    return episode_length_result #Return the string, with the episode length of the anime, as the return value of this method.
 end
 
-# anime_episode_length_search("Monster")
 
-def anime_date_release_search(anime_name)
+def anime_date_release_search(anime_name) #Checks the aired date for the anime
     anime_name_hash = []
     anime_name_hash << anime_name.downcase.split(" ")
     anime_name_hash = anime_name_hash.join("%20")
@@ -194,7 +146,7 @@ def anime_date_release_search(anime_name)
     anime_hash = JSON.parse(response)
     # pp anime_hash
     anime_date_release_result = ""
-    anime_hash["data"].map do |key|
+    anime_hash["data"].map do |key| #Iterate over all of the data hashes to obtain the date released/date aired of the anime.
         key.each do |type_key,type_value|
             if type_key == "attributes"
                 type_value.each do |category,detail|
@@ -214,12 +166,11 @@ def anime_date_release_search(anime_name)
             end
         end
     end
-    return anime_date_release_result
+    return anime_date_release_result #Return the string, with the date released/date aired of the anime, as the return value of this method.
 end
 
-# anime_date_release_search("Monster")
 
-def anime_status_search(anime_name)
+def anime_status_search(anime_name) #Checks the anime's status: either currently ongoing or finished
     anime_name_hash = []
     anime_name_hash << anime_name.downcase.split(" ")
     anime_name_hash = anime_name_hash.join("%20")
@@ -229,7 +180,7 @@ def anime_status_search(anime_name)
     anime_hash = JSON.parse(response)
     pp anime_hash
     anime_status_result = ""
-    anime_hash["data"].map do |key|
+    anime_hash["data"].map do |key| #Iterate over all of the data hashes to obtain the status of the anime.
         key.each do |type_key,type_value|
             if type_key == "attributes"
                 type_value.each do |category,detail|
@@ -249,12 +200,10 @@ def anime_status_search(anime_name)
             end
         end
     end
-    return anime_status_result
+    return anime_status_result #Return the string, with the status of the anime, as the return value of this method.
 end
 
-# anime_status_search("Monster")
-
-def anime_image_search(anime_name)
+def anime_image_search(anime_name) #Searches for the url that links to the original sized image.
     anime_name_hash = []
     anime_name_hash << anime_name.downcase.split(" ")
     anime_name_hash = anime_name_hash.join("%20")
@@ -263,7 +212,7 @@ def anime_image_search(anime_name)
     response = Net::HTTP.get(uri)
     anime_hash = JSON.parse(response)
     image_url = ""
-    anime_hash["data"].map do |key|
+    anime_hash["data"].map do |key| #Iterate over all of the data hashes to obtain the url to the image of the anime.
         key.each do |type_key,type_value|
             if type_key == "attributes"
                 type_value.each do |category,detail|
@@ -286,13 +235,12 @@ def anime_image_search(anime_name)
                 end
             end
         end
-        return image_url
+        return image_url #Return the string, with the url for the image of the anime, as the return value of this method.
     end
 end
 
-# anime_image_search("Monster")
 
-def anime_video_search(anime_name)
+def anime_video_search(anime_name) #Searches for the youtube video code from the JSON API
     anime_name_hash = []
     anime_name_hash << anime_name.downcase.split(" ")
     anime_name_hash = anime_name_hash.join("%20")
@@ -301,7 +249,7 @@ def anime_video_search(anime_name)
     response = Net::HTTP.get(uri)
     anime_hash = JSON.parse(response)
     video_code = ""
-    anime_hash["data"].map do |key|
+    anime_hash["data"].map do |key| #Iterate over all of the data hashes to obtain the youtube video code of the anime.
         key.each do |type_key,type_value|
             if type_key == "attributes"
                 type_value.each do |category,detail|
@@ -320,21 +268,7 @@ def anime_video_search(anime_name)
                 end
             end
         end
-        return video_code
+        return video_code #Return the string, with the youtube video code of the anime, as the return value of this method.
     end
 end
-
-anime_video_search("Monster")
-
-# def testing(anime_name)
-#     anime_name_hash = []
-#     anime_name_hash << anime_name.downcase.split(" ")
-#     anime_name_hash = anime_name_hash.join("%20")
-#     puts anime_name_hash
-#     url = 'https://kitsu.io/api/edge/anime?filter[text]=' + anime_name_hash
-#     puts url
-# end
-
-# testing("Attack on titan")
-
 
