@@ -48,6 +48,9 @@
       <h3>Episode Length: <%= @anime_episode_length_result %> </h3>
       <h3>Date Released/First Aired: <%= @anime_date_release_result %></h3>
       <h3>Current Status: <%= @anime_status_result%></h3>
+      <iframe width="420" height="315"
+        src= <%=@anime_video_code%>>
+      </iframe>
     </div>
     <div class=col-sm-6>
       <img src=<%= @anime_image_url %>>

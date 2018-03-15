@@ -19,6 +19,7 @@ class ApplicationController < Sinatra::Base
     @anime_date_release_result = anime_date_release_search(anime_name)
     @anime_status_result = anime_status_search(anime_name)
     @anime_image_url = anime_image_search(anime_name)
+    @anime_video_code = anime_video_search(anime_name)
     erb :result
   end
 end

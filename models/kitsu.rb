@@ -10,12 +10,10 @@ require 'net/http'
 require 'json'
 require 'pp'
  
-# url = 'https://kitsu.io/api/edge/anime?filter[genres]=romance'
-# uri = URI(url)
-# response = Net::HTTP.get(uri)
-# pp JSON.parse(response)
-# anime_hash = JSON.parse(response)
-# puts anime_hash
+url = 'https://kitsu.io/api/edge/anime?page[limit]=1/anime?filter[text]=cowboy%20bebop'
+uri = URI(url)
+response = Net::HTTP.get(uri)
+pp JSON.parse(response)
 
 # def anime_genre_search
 #     url = 'https://kitsu.io/api/edge/anime?filter[genres]=horror'
@@ -254,7 +252,7 @@ def anime_status_search(anime_name)
     return anime_status_result
 end
 
-anime_status_search("Monster")
+# anime_status_search("Monster")
 
 def anime_image_search(anime_name)
     anime_name_hash = []
@@ -294,7 +292,39 @@ end
 
 # anime_image_search("Monster")
 
+def anime_video_search(anime_name)
+    anime_name_hash = []
+    anime_name_hash << anime_name.downcase.split(" ")
+    anime_name_hash = anime_name_hash.join("%20")
+    url = 'https://kitsu.io/api/edge/anime?filter[text]=' + anime_name_hash
+    uri = URI(url)
+    response = Net::HTTP.get(uri)
+    anime_hash = JSON.parse(response)
+    video_code = ""
+    anime_hash["data"].map do |key|
+        key.each do |type_key,type_value|
+            if type_key == "attributes"
+                type_value.each do |category,detail|
+                    if category == "titles"
+                        detail.each do |language,title|
+                            if language == "en" && title.downcase == anime_name.downcase
+                                type_value.each do |category,detail|
+                                    if category == "youtubeVideoId"
+                                        video_code = "https://www.youtube.com/embed/" + detail
+                                    end
+                                end
+                                
+                            end
+                        end
+                    end
+                end
+            end
+        end
+        return video_code
+    end
+end
 
+anime_video_search("Monster")
 
 # def testing(anime_name)
 #     anime_name_hash = []
