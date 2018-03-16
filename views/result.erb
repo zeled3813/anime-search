@@ -37,20 +37,23 @@
     }
   </style>
   <body>
-    <div class=container-fluid id="header">
+    <div class=container-fluid id="header"> <!--This creates a div that takes up as much space as possible with the header "Search Result" -->
       <h1>Search Result</h1>
     </div>
-    <div class=container-fluid>
+    <div class=container-fluid> <!--This creates a div that takes up as much space as possible with the anime title" -->
       <h1><%=@anime_name_result%></h1>
     </div>
-    <div id=summary class=col-sm-6>
+    <div id=summary class=col-sm-6> <!--This creates a div that takes up only the first half of the space on small device and above with the summary, episode count, etc. of the anime -->
       <h3>Summary: </h3></h3><p><%=@anime_desc_result%></p>
       <h3>Episode Count: <%= @anime_episode_count_result %></h3>
       <h3>Episode Length: <%= @anime_episode_length_result %> </h3>
       <h3>Date Released/First Aired: <%= @anime_date_release_result %></h3>
       <h3>Current Status: <%= @anime_status_result%></h3>
+      <iframe width="420" height="315"
+        src= <%=@anime_video_code%>>
+      </iframe><h6>Source:Youtube</h6>
     </div>
-    <div class=col-sm-6>
+    <div class=col-sm-6> <!--This creates a div that takes up only the second half of the space on small device and above with the anime image -->
       <img src=<%= @anime_image_url %>>
     </div>
   </body>
